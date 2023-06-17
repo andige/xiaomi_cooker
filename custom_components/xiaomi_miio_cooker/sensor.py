@@ -1,4 +1,3 @@
-import asyncio
 import logging
 from enum import Enum
 from typing import Optional
@@ -20,7 +19,6 @@ SENSOR_TYPES = {
     "menu": ["Menu", None, "menu", None, "mdi:menu"],
     "temperature": ["Temperature", None, "temperature", "°C", None],
     "remaining": ["Remaining", None, "remaining", "min", "mdi:timer"],
-    "cooking_delayed": ["Cooking delayed", None, "cooking_delayed", "min", "mdi:timer"],
     "duration": ["Duration", None, "duration", "min", "mdi:timelapse"],
     "favorite": ["Favorite", None, "favorite", None, "mdi:information-outline"],
     "state": ["State", "stage", "state", None, "mdi:playlist-check"],
@@ -68,8 +66,7 @@ class XiaomiCookerSensor(Entity):
             "{}_{}".format(COOKER_DOMAIN, slugify(self._name))
         )
 
-    @asyncio.coroutine
-    def async_added_to_hass(self):
+    async def async_added_to_hass(self):
         """Register callbacks."""
         self.hass.helpers.dispatcher.async_dispatcher_connect(
             "{}_updated".format(COOKER_DOMAIN), self.async_update_callback
