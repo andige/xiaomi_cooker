@@ -10,7 +10,7 @@ from homeassistant.helpers.dispatcher import dispatcher_send
 from homeassistant.helpers.entity import Entity
 from homeassistant.helpers.event import track_time_interval
 from homeassistant.util.dt import utcnow
-from miio import Cooker, Device, DeviceException
+from miio import Cooker, MultiCooker, Device, DeviceException
 from miio.cooker import OperationMode
 
 _LOGGER = logging.getLogger(__name__)
